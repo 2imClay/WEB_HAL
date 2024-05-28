@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Exercise;
 import com.example.demo.entity.Product;
+import com.example.demo.service.ExerciseService;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ public class AdminController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ExerciseService exerciseService;
 
     @GetMapping
     public String homePage(){
@@ -23,9 +27,7 @@ public class AdminController {
     @GetMapping("/product")
     public String index(Model model){
         List<Product> list = this.productService.getAllProducts();
-
         model.addAttribute("list", list);
-
         return "admin/page-list-product";
     }
 
@@ -33,7 +35,6 @@ public class AdminController {
     public String creatProduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-
         return "admin/page-add-product";
     }
     @PostMapping("/add-product")
@@ -62,6 +63,13 @@ public class AdminController {
         } else {
             return "redirect:/admin/product";
         }
+    }
+
+    @GetMapping("/exercise")
+    public String exercise(Model model){
+        List<Exercise> list = this.exerciseService.getAllExercise();
+        model.addAttribute("list", list);
+        return "admin/page-list-exercise";
     }
 
 }
