@@ -66,10 +66,31 @@ public class AdminController {
     }
 
     @GetMapping("/exercise")
-    public String exercise(Model model){
+    public String renderExerciseList(Model model){
         List<Exercise> list = this.exerciseService.getAllExercise();
+        if (list == null || list.isEmpty()) {
+            return renderEmptyExerciseList();
+        }
         model.addAttribute("list", list);
         return "admin/page-list-exercise";
+    }
+
+    private String renderEmptyExerciseList() {
+        return "admin/page-list-exercise";
+    }
+
+    @GetMapping("/exercise/{exerciseID}")
+    String renderExerciseDetail(@PathVariable("exerciseID") String eID, Model model){
+        Exercise item = this.exerciseService.getExercise(eID);
+        if (item == null) {
+            return renderEmptyExercise();
+        }
+        model.addAttribute("item", item);
+        return "admin/page-exercise-detail";
+    }
+
+    private String renderEmptyExercise() {
+        return "admin/page-exercise-detail-error";
     }
 
 }

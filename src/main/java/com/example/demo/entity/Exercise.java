@@ -13,8 +13,8 @@ public class Exercise {
     private String name;
     @Column(name = "shortDesc")
     private String shortDesc;
-    @Column(name = "joint")
-    private String joint;
+    @Column(name = "muscle")
+    private String muscle;
     @Column(name = "recommendPerWeek")
     private int recommendPerWeek;
     @Column(name = "exerciseTime")
@@ -23,6 +23,8 @@ public class Exercise {
     private String detail;
     @Column(name = "thumbnail")
     private String thumbnail;
+    @Column(name = "videoURL")
+    private String videoURL;
 
     public String getThumbnail() {
         return thumbnail;
@@ -56,12 +58,12 @@ public class Exercise {
         this.shortDesc = shortDesc;
     }
 
-    public String getJoint() {
-        return joint;
+    public String getMuscle() {
+        return muscle;
     }
 
-    public void setJoint(String joint) {
-        this.joint = joint;
+    public void setMuscle(String joint) {
+        this.muscle = joint;
     }
 
     public int getRecommendPerWeek() {
@@ -86,5 +88,13 @@ public class Exercise {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public String getEmbedVideoURL() {
+        return videoURL;
+    }
+
+    public void setEmbedVideoURL(String embedVideoURL) {
+        this.videoURL = embedVideoURL;
     }
 }
